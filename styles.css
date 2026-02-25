@@ -1,4 +1,3 @@
-<style>
   :root {
     --yellow: #FFD700;
     --yellow-hot: #FFEC00;
@@ -838,4 +837,3 @@
     border-left: 3px solid var(--yellow-dim);
   }
   .tip-card strong { color: var(--yellow-dim); display: block; margin-bottom: 6px; }
-</style>
