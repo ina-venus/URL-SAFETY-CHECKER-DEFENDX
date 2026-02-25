@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DefendX — URL Safety Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Toast Notification Container -->
+<div id="toast-container"></div>
+
+<!-- Global Warning Banner -->
+<div id="global-warning-banner">
+  <div class="warning-icon-big">⚠️</div>
+  <div class="warning-banner-text">
+    <strong>⛔ HIGH-RISK URL DETECTED</strong>
+    <span id="warning-banner-detail">This URL exhibits multiple indicators of phishing or malicious activity. Do NOT proceed.</span>
+  </div>
+</div>
+
+<header>
+  <div class="logo-mark">DX</div>
+  <div class="logo-text">
+    <h1>DEFENDX</h1>
+    <p>URL Threat Intelligence Platform</p>
+  </div>
+  <div class="header-status">
+    <div class="status-pill live">● ACTIVE</div>
+    <div class="status-pill" id="scan-count-pill">0 SCANS</div>
+    <div class="status-pill" id="threat-count-pill">0 THREATS</div>
+  </div>
+</header>
+
+<main>
+  <!-- Input Section -->
+  <div class="input-section">
+    <div class="input-label">// Enter URL for threat analysis</div>
+    <div class="input-wrapper">
+      <input type="text" id="url-input" placeholder="https://example.com/path?param=value" autocomplete="off" spellcheck="false">
+      <button id="scan-btn" onclick="scanURL()">⚡ SCAN</button>
+    </div>
+    <div class="bulk-section">
+      <button class="bulk-toggle" onclick="toggleBulk()">+ BULK SCAN (Duplicate Detection)</button>
+      <div id="bulk-area">
+        <textarea id="bulk-input" placeholder="Paste multiple URLs (one per line)...&#10;https://paypal.com&#10;https://paypa1.com&#10;https://paypal-secure-login.com"></textarea>
+        <button id="bulk-scan-btn" onclick="bulkScan()">⚡ ANALYZE ALL & DETECT DUPLICATES</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duplicate Detection Panel -->
+  <div class="dupe-panel" id="dupe-panel" style="display:none">
+    <div class="panel-header">
+      <span style="font-size:18px">🔗</span>
+      <div class="panel-title">Original Link & Duplicate Detector</div>
+      <div class="panel-badge">ORIGINALITY ANALYSIS</div>
+    </div>
+    <div class="dupe-stats">
+      <div class="dupe-stat">
+        <div class="dupe-stat-num" id="stat-total">0</div>
+        <div class="dupe-stat-label">URLs Analyzed</div>
+      </div>
+      <div class="dupe-stat">
+        <div class="dupe-stat-num" id="stat-original">0</div>
+        <div class="dupe-stat-label">Originals</div>
+      </div>
+      <div class="dupe-stat">
+        <div class="dupe-stat-num" id="stat-dupes">0</div>
+        <div class="dupe-stat-label">Duplicates/Imposters</div>
+      </div>
+    </div>
+    <div class="dupe-list" id="dupe-list"></div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="scan-progress">
+      <div class="scan-text" id="scan-status-text">INITIALIZING SCAN ENGINE...</div>
+      <div class="scan-bar"><div class="scan-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results"></div>
+
+  <!-- Scan History -->
+  <div class="history-section" id="history-section" style="display:none">
+    <div class="panel-header">
+      <div class="panel-title">Scan History</div>
+      <button class="clear-btn" onclick="clearHistory()">✕ CLEAR</button>
+    </div>
+    <div class="history-list" id="history-list"></div>
+  </div>
+
+  <!-- Static Tips -->
+  <div class="tip-section">
+    <div class="tip-header">// Threat Awareness Briefing</div>
+    <div class="tip-cards">
+      <div class="tip-card"><strong>🎣 PHISHING ANATOMY</strong>Attackers replace letters: "paypa<span style="color:var(--warn-red)">1</span>.com" vs "paypal.com". Always verify the domain before entering credentials.</div>
+      <div class="tip-card"><strong>🔒 SSL ≠ SAFE</strong>HTTPS only means the connection is encrypted — not that the site is legitimate. Phishing sites use free SSL certs too.</div>
+      <div class="tip-card"><strong>📏 URL SUSPICION</strong>Legitimate sites rarely use URLs over 100 characters. Long URLs often contain redirect chains to hide the true destination.</div>
+      <div class="tip-card"><strong>🕒 NEW DOMAINS</strong>Domains registered less than 30 days ago are 5× more likely to be used for phishing. DefendX flags these automatically.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>DefendX v2.0 — Client-Side URL Intelligence</p>
+  <p>⚡ Hackathon Build — Privacy-First by Design</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
